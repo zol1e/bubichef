@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitCompany": "",
+    "baseName": "bubichef",
+    "packageName": "hu.bubi.chef",
+    "packageFolder": "hu/bubi/chef",
+    "serverPort": 8080,
+    "serviceDiscoveryType": false,
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "maven",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "enableTranslation": true,
+    "nativeLanguage": "hu",
+    "languages": [
+      "en",
+      "hu"
+    ],
+    "clientFramework": "angularX",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "5.7.0",
+    "jwtSecretKey": "M2U2YTc0MmU0Y2Y0ZWUyMTBjNTZjMWFhZGQzMDRjN2MwYmQ2Y2JkYTYxODQwYjU3YWU4Y2Y2NTQ1NjNhMTNjMjRhOTdlNWRiMTlmMTE0NmRlZWI3MGQwZDU3ZWY3NzFjYjZmOWIxMzk2MTVkZDEyYWUwYzJhNzYyY2E5MTU3ZjE=",
+    "otherModules": []
+  }
+}
