@@ -43,8 +43,6 @@ public class Recept implements Serializable {
     @Column(name = "feltoltve")
     private LocalDate feltoltve;
 
-    @OneToMany(mappedBy = "recept")
-    private Set<ReceptToOsszetevo> osszetevoks = new HashSet<>();
     @ManyToOne
     @JsonIgnoreProperties("")
     private Kategoria kategoria;
@@ -55,6 +53,8 @@ public class Recept implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "hashtageks_id", referencedColumnName = "id"))
     private Set<HashTag> hashtageks = new HashSet<>();
 
+    @OneToMany(mappedBy = "recept")
+    private Set<ReceptToOsszetevo> osszetevoks = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -129,31 +129,6 @@ public class Recept implements Serializable {
         this.feltoltve = feltoltve;
     }
 
-    public Set<ReceptToOsszetevo> getOsszetevoks() {
-        return osszetevoks;
-    }
-
-    public Recept osszetevoks(Set<ReceptToOsszetevo> receptToOsszetevos) {
-        this.osszetevoks = receptToOsszetevos;
-        return this;
-    }
-
-    public Recept addOsszetevok(ReceptToOsszetevo receptToOsszetevo) {
-        this.osszetevoks.add(receptToOsszetevo);
-        receptToOsszetevo.setRecept(this);
-        return this;
-    }
-
-    public Recept removeOsszetevok(ReceptToOsszetevo receptToOsszetevo) {
-        this.osszetevoks.remove(receptToOsszetevo);
-        receptToOsszetevo.setRecept(null);
-        return this;
-    }
-
-    public void setOsszetevoks(Set<ReceptToOsszetevo> receptToOsszetevos) {
-        this.osszetevoks = receptToOsszetevos;
-    }
-
     public Kategoria getKategoria() {
         return kategoria;
     }
@@ -190,6 +165,31 @@ public class Recept implements Serializable {
 
     public void setHashtageks(Set<HashTag> hashTags) {
         this.hashtageks = hashTags;
+    }
+
+    public Set<ReceptToOsszetevo> getOsszetevoks() {
+        return osszetevoks;
+    }
+
+    public Recept osszetevoks(Set<ReceptToOsszetevo> receptToOsszetevos) {
+        this.osszetevoks = receptToOsszetevos;
+        return this;
+    }
+
+    public Recept addOsszetevok(ReceptToOsszetevo receptToOsszetevo) {
+        this.osszetevoks.add(receptToOsszetevo);
+        receptToOsszetevo.setRecept(this);
+        return this;
+    }
+
+    public Recept removeOsszetevok(ReceptToOsszetevo receptToOsszetevo) {
+        this.osszetevoks.remove(receptToOsszetevo);
+        receptToOsszetevo.setRecept(null);
+        return this;
+    }
+
+    public void setOsszetevoks(Set<ReceptToOsszetevo> receptToOsszetevos) {
+        this.osszetevoks = receptToOsszetevos;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

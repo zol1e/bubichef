@@ -25,12 +25,6 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "relationshipName": "osszetevok",
-            "otherEntityName": "receptToOsszetevo",
-            "otherEntityRelationshipName": "recept"
-        },
-        {
             "relationshipType": "many-to-one",
             "relationshipName": "kategoria",
             "otherEntityName": "kategoria",
@@ -43,6 +37,12 @@
             "otherEntityName": "hashTag",
             "otherEntityField": "id",
             "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "osszetevok",
+            "otherEntityName": "receptToOsszetevo",
+            "otherEntityRelationshipName": "recept"
         }
     ],
     "changelogDate": "20181124203729",

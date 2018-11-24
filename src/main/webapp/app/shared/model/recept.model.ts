@@ -1,6 +1,6 @@
 import { Moment } from 'moment';
-import { IReceptToOsszetevo } from 'app/shared/model//recept-to-osszetevo.model';
 import { IHashTag } from 'app/shared/model//hash-tag.model';
+import { IReceptToOsszetevo } from 'app/shared/model//recept-to-osszetevo.model';
 
 export interface IRecept {
     id?: number;
@@ -9,9 +9,9 @@ export interface IRecept {
     kepContentType?: string;
     kep?: any;
     feltoltve?: Moment;
-    osszetevoks?: IReceptToOsszetevo[];
     kategoriaId?: number;
     hashtageks?: IHashTag[];
+    osszetevoks?: IReceptToOsszetevo[];
 }
 
 export class Recept implements IRecept {
@@ -22,8 +22,8 @@ export class Recept implements IRecept {
         public kepContentType?: string,
         public kep?: any,
         public feltoltve?: Moment,
-        public osszetevoks?: IReceptToOsszetevo[],
         public kategoriaId?: number,
-        public hashtageks?: IHashTag[]
+        public hashtageks?: IHashTag[],
+        public osszetevoks?: IReceptToOsszetevo[]
     ) {}
 }

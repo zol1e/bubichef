@@ -14,8 +14,8 @@ public interface ReceptMapper extends EntityMapper<ReceptDTO, Recept> {
     @Mapping(source = "kategoria.id", target = "kategoriaId")
     ReceptDTO toDto(Recept recept);
 
-    @Mapping(target = "osszetevoks", ignore = true)
     @Mapping(source = "kategoriaId", target = "kategoria")
+    @Mapping(target = "osszetevoks", ignore = true)
     Recept toEntity(ReceptDTO receptDTO);
 
     default Recept fromId(Long id) {

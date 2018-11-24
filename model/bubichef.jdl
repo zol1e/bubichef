@@ -30,10 +30,10 @@ relationship ManyToMany {
 
 relationship ManyToOne {
    Recept{kategoria} to Kategoria
+   ReceptToOsszetevo{recept} to Recept{osszetevok}
 }
 
 relationship OneToMany {
-   Recept{osszetevok} to ReceptToOsszetevo{recept}
    Osszetevo{receptek} to ReceptToOsszetevo{osszetevo}
 }
 
