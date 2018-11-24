@@ -1,0 +1,19 @@
+{
+    "name": "Kategoria",
+    "fields": [
+        {
+            "fieldName": "nev",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181124203730",
+    "entityTableName": "kategoria",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

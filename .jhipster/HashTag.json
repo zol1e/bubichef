@@ -1,0 +1,27 @@
+{
+    "name": "HashTag",
+    "fields": [
+        {
+            "fieldName": "nev",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "receptek",
+            "otherEntityName": "recept",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "hashtagek"
+        }
+    ],
+    "changelogDate": "20181124203733",
+    "entityTableName": "hash_tag",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

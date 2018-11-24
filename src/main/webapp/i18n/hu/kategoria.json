@@ -1,0 +1,21 @@
+{
+    "bubichefApp": {
+        "kategoria": {
+            "home": {
+                "title": "Kategorias",
+                "createLabel": "Egy új Kategoria létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Kategoriat"
+            },
+            "created": "Egy új Kategoria lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Kategoria módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Kategoria törölve lett {{ param }} azonosítóval",
+            "delete": {
+                "question": "Biztos benne, hogy törölni szeretné az Kategoriat {{ id }} azonosítóval?"
+            },
+            "detail": {
+                "title": "Kategoria"
+            },
+            "nev": "Nev"
+        }
+    }
+}

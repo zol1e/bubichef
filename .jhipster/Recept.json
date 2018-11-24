@@ -1,0 +1,57 @@
+{
+    "name": "Recept",
+    "fields": [
+        {
+            "fieldName": "nev",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "leiras",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 10000
+        },
+        {
+            "fieldName": "kep",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "feltoltve",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "osszetevok",
+            "otherEntityName": "receptToOsszetevo",
+            "otherEntityRelationshipName": "recept"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "kategoria",
+            "otherEntityName": "kategoria",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "receptek",
+            "relationshipName": "hashtagek",
+            "otherEntityName": "hashTag",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20181124203729",
+    "entityTableName": "recept",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

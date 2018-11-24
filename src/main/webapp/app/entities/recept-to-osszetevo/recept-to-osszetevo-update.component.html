@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-recept-to-osszetevo-heading" jhiTranslate="bubichefApp.receptToOsszetevo.home.createOrEditLabel">Create or edit a Recept To Osszetevo</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!receptToOsszetevo.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="receptToOsszetevo.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bubichefApp.receptToOsszetevo.mennyiseg" for="field_mennyiseg">Mennyiseg</label>
+                    <input type="text" class="form-control" name="mennyiseg" id="field_mennyiseg"
+                        [(ngModel)]="receptToOsszetevo.mennyiseg" maxlength="50"/>
+                    <div [hidden]="!(editForm.controls.mennyiseg?.dirty && editForm.controls.mennyiseg?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.mennyiseg?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bubichefApp.receptToOsszetevo.megjegyzes" for="field_megjegyzes">Megjegyzes</label>
+                    <input type="text" class="form-control" name="megjegyzes" id="field_megjegyzes"
+                        [(ngModel)]="receptToOsszetevo.megjegyzes" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bubichefApp.receptToOsszetevo.recept" for="field_recept">Recept</label>
+                    <select class="form-control" id="field_recept" name="recept" [(ngModel)]="receptToOsszetevo.receptId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="receptOption.id" *ngFor="let receptOption of recepts; trackBy: trackReceptById">{{receptOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bubichefApp.receptToOsszetevo.osszetevo" for="field_osszetevo">Osszetevo</label>
+                    <select class="form-control" id="field_osszetevo" name="osszetevo" [(ngModel)]="receptToOsszetevo.osszetevoId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="osszetevoOption.id" *ngFor="let osszetevoOption of osszetevos; trackBy: trackOsszetevoById">{{osszetevoOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

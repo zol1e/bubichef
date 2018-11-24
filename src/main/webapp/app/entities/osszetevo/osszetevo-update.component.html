@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-osszetevo-heading" jhiTranslate="bubichefApp.osszetevo.home.createOrEditLabel">Create or edit a Osszetevo</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!osszetevo.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="osszetevo.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bubichefApp.osszetevo.nev" for="field_nev">Nev</label>
+                    <input type="text" class="form-control" name="nev" id="field_nev"
+                        [(ngModel)]="osszetevo.nev" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bubichefApp.osszetevo.leiras" for="field_leiras">Leiras</label>
+                    <input type="text" class="form-control" name="leiras" id="field_leiras"
+                        [(ngModel)]="osszetevo.leiras" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bubichefApp.osszetevo.kep" for="field_kep">Kep</label>
+                    <div>
+                        <img [src]="'data:' + osszetevo.kepContentType + ';base64,' + osszetevo.kep" style="max-height: 100px;" *ngIf="osszetevo.kep" alt="osszetevo image"/>
+                        <div *ngIf="osszetevo.kep" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{osszetevo.kepContentType}}, {{byteSize(osszetevo.kep)}}</span>
+                            <button type="button" (click)="clearInputImage('kep', 'kepContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_kep" (change)="setFileData($event, osszetevo, 'kep', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="kep" id="field_kep"
+                        [(ngModel)]="osszetevo.kep" />
+                    <input type="hidden" class="form-control" name="kepContentType" id="field_kepContentType"
+                        [(ngModel)]="osszetevo.kepContentType" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

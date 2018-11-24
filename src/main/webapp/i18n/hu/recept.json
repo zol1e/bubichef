@@ -1,0 +1,27 @@
+{
+    "bubichefApp": {
+        "recept": {
+            "home": {
+                "title": "Recepts",
+                "createLabel": "Egy új Recept létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Receptt"
+            },
+            "created": "Egy új Recept lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Recept módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Recept törölve lett {{ param }} azonosítóval",
+            "delete": {
+                "question": "Biztos benne, hogy törölni szeretné az Receptt {{ id }} azonosítóval?"
+            },
+            "detail": {
+                "title": "Recept"
+            },
+            "nev": "Nev",
+            "leiras": "Leiras",
+            "kep": "Kep",
+            "feltoltve": "Feltoltve",
+            "osszetevok": "Osszetevok",
+            "kategoria": "Kategoria",
+            "hashtagek": "Hashtagek"
+        }
+    }
+}

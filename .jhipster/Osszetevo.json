@@ -1,0 +1,35 @@
+{
+    "name": "Osszetevo",
+    "fields": [
+        {
+            "fieldName": "nev",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "leiras",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "kep",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "receptek",
+            "otherEntityName": "receptToOsszetevo",
+            "otherEntityRelationshipName": "osszetevo"
+        }
+    ],
+    "changelogDate": "20181124203732",
+    "entityTableName": "osszetevo",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ReceptToOsszetevo.
+    -->
+    <changeSet id="20181124203731-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="recept_id"
+                                 baseTableName="recept_to_osszetevo"
+                                 constraintName="fk_recept_to_osszetevo_recept_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="recept"/>
+
+        <addForeignKeyConstraint baseColumnNames="osszetevo_id"
+                                 baseTableName="recept_to_osszetevo"
+                                 constraintName="fk_recept_to_osszetevo_osszetevo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="osszetevo"/>
+
+    </changeSet>
+</databaseChangeLog>

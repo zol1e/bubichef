@@ -1,0 +1,42 @@
+entity Recept {
+	nev String
+	leiras String maxlength(10000)
+	kep ImageBlob
+	feltoltve LocalDate
+}
+
+entity Kategoria {
+	nev String
+}
+
+entity ReceptToOsszetevo {
+	mennyiseg String maxlength(50)
+	megjegyzes String
+}
+
+entity Osszetevo {
+	nev String
+	leiras String
+	kep ImageBlob
+}
+
+entity HashTag {
+	nev String
+}
+
+relationship ManyToMany {
+   Recept{hashtagek} to HashTag{receptek}
+}
+
+relationship ManyToOne {
+   Recept{kategoria} to Kategoria
+}
+
+relationship OneToMany {
+   Recept{osszetevok} to ReceptToOsszetevo{recept}
+   Osszetevo{receptek} to ReceptToOsszetevo{osszetevo}
+}
+
+dto * with mapstruct
+
+service all with serviceImpl

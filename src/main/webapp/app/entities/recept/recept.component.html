@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bubichefApp.recept.home.title">Recepts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-recept" [routerLink]="['/recept/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="bubichefApp.recept.home.createLabel">
+            Create new Recept
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="recepts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="bubichefApp.recept.nev">Nev</span></th>
+            <th><span jhiTranslate="bubichefApp.recept.leiras">Leiras</span></th>
+            <th><span jhiTranslate="bubichefApp.recept.kep">Kep</span></th>
+            <th><span jhiTranslate="bubichefApp.recept.feltoltve">Feltoltve</span></th>
+            <th><span jhiTranslate="bubichefApp.recept.kategoria">Kategoria</span></th>
+            <th><span jhiTranslate="bubichefApp.recept.hashtagek">Hashtagek</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let recept of recepts ;trackBy: trackId">
+                <td><a [routerLink]="['/recept', recept.id, 'view' ]">{{recept.id}}</a></td>
+                <td>{{recept.nev}}</td>
+                <td>{{recept.leiras}}</td>
+                <td>
+                    <a *ngIf="recept.kep" (click)="openFile(recept.kepContentType, recept.kep)">
+                        <img [src]="'data:' + recept.kepContentType + ';base64,' + recept.kep" style="max-height: 30px;" alt="recept image"/>
+                    </a>
+                    <span *ngIf="recept.kep">{{recept.kepContentType}}, {{byteSize(recept.kep)}}</span>
+                </td>
+                <td>{{recept.feltoltve | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="recept.kategoriaId">
+                        <a [routerLink]="['../kategoria', recept.kategoriaId , 'view' ]" >{{recept.kategoriaId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let hashtagek of recept.hashtageks; let last = last">
+                            <a class="form-control-static" [routerLink]="['../hash-tag', hashtagek?.id, 'view' ]">{{hashtagek.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/recept', recept.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/recept', recept.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'recept/'+ recept.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

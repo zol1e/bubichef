@@ -1,0 +1,24 @@
+{
+    "bubichefApp": {
+        "receptToOsszetevo": {
+            "home": {
+                "title": "ReceptToOsszetevos",
+                "createLabel": "Egy új Recept To Osszetevo létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Recept To Osszetevot"
+            },
+            "created": "Egy új Recept To Osszetevo lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Recept To Osszetevo módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Recept To Osszetevo törölve lett {{ param }} azonosítóval",
+            "delete": {
+                "question": "Biztos benne, hogy törölni szeretné az Recept To Osszetevot {{ id }} azonosítóval?"
+            },
+            "detail": {
+                "title": "Recept To Osszetevo"
+            },
+            "mennyiseg": "Mennyiseg",
+            "megjegyzes": "Megjegyzes",
+            "recept": "Recept",
+            "osszetevo": "Osszetevo"
+        }
+    }
+}

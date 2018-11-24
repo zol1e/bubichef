@@ -1,0 +1,68 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bubichefApp.receptToOsszetevo.home.title">Recept To Osszetevos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-recept-to-osszetevo" [routerLink]="['/recept-to-osszetevo/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="bubichefApp.receptToOsszetevo.home.createLabel">
+            Create new Recept To Osszetevo
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="receptToOsszetevos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="bubichefApp.receptToOsszetevo.mennyiseg">Mennyiseg</span></th>
+            <th><span jhiTranslate="bubichefApp.receptToOsszetevo.megjegyzes">Megjegyzes</span></th>
+            <th><span jhiTranslate="bubichefApp.receptToOsszetevo.recept">Recept</span></th>
+            <th><span jhiTranslate="bubichefApp.receptToOsszetevo.osszetevo">Osszetevo</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let receptToOsszetevo of receptToOsszetevos ;trackBy: trackId">
+                <td><a [routerLink]="['/recept-to-osszetevo', receptToOsszetevo.id, 'view' ]">{{receptToOsszetevo.id}}</a></td>
+                <td>{{receptToOsszetevo.mennyiseg}}</td>
+                <td>{{receptToOsszetevo.megjegyzes}}</td>
+                <td>
+                    <div *ngIf="receptToOsszetevo.receptId">
+                        <a [routerLink]="['../recept', receptToOsszetevo.receptId , 'view' ]" >{{receptToOsszetevo.receptId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="receptToOsszetevo.osszetevoId">
+                        <a [routerLink]="['../osszetevo', receptToOsszetevo.osszetevoId , 'view' ]" >{{receptToOsszetevo.osszetevoId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/recept-to-osszetevo', receptToOsszetevo.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/recept-to-osszetevo', receptToOsszetevo.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'recept-to-osszetevo/'+ receptToOsszetevo.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

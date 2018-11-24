@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="osszetevo">
+            <h2><span jhiTranslate="bubichefApp.osszetevo.detail.title">Osszetevo</span> {{osszetevo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bubichefApp.osszetevo.nev">Nev</span></dt>
+                <dd>
+                    <span>{{osszetevo.nev}}</span>
+                </dd>
+                <dt><span jhiTranslate="bubichefApp.osszetevo.leiras">Leiras</span></dt>
+                <dd>
+                    <span>{{osszetevo.leiras}}</span>
+                </dd>
+                <dt><span jhiTranslate="bubichefApp.osszetevo.kep">Kep</span></dt>
+                <dd>
+                    <div *ngIf="osszetevo.kep">
+                        <a (click)="openFile(osszetevo.kepContentType, osszetevo.kep)">
+                            <img [src]="'data:' + osszetevo.kepContentType + ';base64,' + osszetevo.kep" style="max-width: 100%;" alt="osszetevo image"/>
+                        </a>
+                        {{osszetevo.kepContentType}}, {{byteSize(osszetevo.kep)}}
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/osszetevo', osszetevo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

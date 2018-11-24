@@ -1,0 +1,27 @@
+{
+    "bubichefApp": {
+        "recept": {
+            "home": {
+                "title": "Recepts",
+                "createLabel": "Create a new Recept",
+                "createOrEditLabel": "Create or edit a Recept"
+            },
+            "created": "A new Recept is created with identifier {{ param }}",
+            "updated": "A Recept is updated with identifier {{ param }}",
+            "deleted": "A Recept is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Recept {{ id }}?"
+            },
+            "detail": {
+                "title": "Recept"
+            },
+            "nev": "Nev",
+            "leiras": "Leiras",
+            "kep": "Kep",
+            "feltoltve": "Feltoltve",
+            "osszetevok": "Osszetevok",
+            "kategoria": "Kategoria",
+            "hashtagek": "Hashtagek"
+        }
+    }
+}

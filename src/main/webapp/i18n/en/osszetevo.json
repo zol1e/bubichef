@@ -1,0 +1,24 @@
+{
+    "bubichefApp": {
+        "osszetevo": {
+            "home": {
+                "title": "Osszetevos",
+                "createLabel": "Create a new Osszetevo",
+                "createOrEditLabel": "Create or edit a Osszetevo"
+            },
+            "created": "A new Osszetevo is created with identifier {{ param }}",
+            "updated": "A Osszetevo is updated with identifier {{ param }}",
+            "deleted": "A Osszetevo is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Osszetevo {{ id }}?"
+            },
+            "detail": {
+                "title": "Osszetevo"
+            },
+            "nev": "Nev",
+            "leiras": "Leiras",
+            "kep": "Kep",
+            "receptek": "Receptek"
+        }
+    }
+}

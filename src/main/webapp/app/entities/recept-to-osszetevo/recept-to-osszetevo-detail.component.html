@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="receptToOsszetevo">
+            <h2><span jhiTranslate="bubichefApp.receptToOsszetevo.detail.title">Recept To Osszetevo</span> {{receptToOsszetevo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bubichefApp.receptToOsszetevo.mennyiseg">Mennyiseg</span></dt>
+                <dd>
+                    <span>{{receptToOsszetevo.mennyiseg}}</span>
+                </dd>
+                <dt><span jhiTranslate="bubichefApp.receptToOsszetevo.megjegyzes">Megjegyzes</span></dt>
+                <dd>
+                    <span>{{receptToOsszetevo.megjegyzes}}</span>
+                </dd>
+                <dt><span jhiTranslate="bubichefApp.receptToOsszetevo.recept">Recept</span></dt>
+                <dd>
+                    <div *ngIf="receptToOsszetevo.receptId">
+                        <a [routerLink]="['/recept', receptToOsszetevo.receptId, 'view']">{{receptToOsszetevo.receptId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bubichefApp.receptToOsszetevo.osszetevo">Osszetevo</span></dt>
+                <dd>
+                    <div *ngIf="receptToOsszetevo.osszetevoId">
+                        <a [routerLink]="['/osszetevo', receptToOsszetevo.osszetevoId, 'view']">{{receptToOsszetevo.osszetevoId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/recept-to-osszetevo', receptToOsszetevo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

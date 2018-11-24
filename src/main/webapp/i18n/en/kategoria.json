@@ -1,0 +1,21 @@
+{
+    "bubichefApp": {
+        "kategoria": {
+            "home": {
+                "title": "Kategorias",
+                "createLabel": "Create a new Kategoria",
+                "createOrEditLabel": "Create or edit a Kategoria"
+            },
+            "created": "A new Kategoria is created with identifier {{ param }}",
+            "updated": "A Kategoria is updated with identifier {{ param }}",
+            "deleted": "A Kategoria is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Kategoria {{ id }}?"
+            },
+            "detail": {
+                "title": "Kategoria"
+            },
+            "nev": "Nev"
+        }
+    }
+}

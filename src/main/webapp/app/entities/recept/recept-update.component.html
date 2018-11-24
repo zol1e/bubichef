@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-recept-heading" jhiTranslate="bubichefApp.recept.home.createOrEditLabel">Create or edit a Recept</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!recept.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="recept.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bubichefApp.recept.nev" for="field_nev">Nev</label>
+                    <input type="text" class="form-control" name="nev" id="field_nev"
+                        [(ngModel)]="recept.nev" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bubichefApp.recept.leiras" for="field_leiras">Leiras</label>
+                    <input type="text" class="form-control" name="leiras" id="field_leiras"
+                        [(ngModel)]="recept.leiras" maxlength="10000"/>
+                    <div [hidden]="!(editForm.controls.leiras?.dirty && editForm.controls.leiras?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.leiras?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 10000 }">
+                        This field cannot be longer than 10000 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bubichefApp.recept.kep" for="field_kep">Kep</label>
+                    <div>
+                        <img [src]="'data:' + recept.kepContentType + ';base64,' + recept.kep" style="max-height: 100px;" *ngIf="recept.kep" alt="recept image"/>
+                        <div *ngIf="recept.kep" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{recept.kepContentType}}, {{byteSize(recept.kep)}}</span>
+                            <button type="button" (click)="clearInputImage('kep', 'kepContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_kep" (change)="setFileData($event, recept, 'kep', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="kep" id="field_kep"
+                        [(ngModel)]="recept.kep" />
+                    <input type="hidden" class="form-control" name="kepContentType" id="field_kepContentType"
+                        [(ngModel)]="recept.kepContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bubichefApp.recept.feltoltve" for="field_feltoltve">Feltoltve</label>
+                    <div class="input-group">
+                        <input id="field_feltoltve" type="text" class="form-control" name="feltoltve" ngbDatepicker  #feltoltveDp="ngbDatepicker" [(ngModel)]="recept.feltoltve"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="feltoltveDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bubichefApp.recept.kategoria" for="field_kategoria">Kategoria</label>
+                    <select class="form-control" id="field_kategoria" name="kategoria" [(ngModel)]="recept.kategoriaId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="kategoriaOption.id" *ngFor="let kategoriaOption of kategorias; trackBy: trackKategoriaById">{{kategoriaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="bubichefApp.recept.hashtagek" for="field_hashtagek">Hashtagek</label>
+                    <select class="form-control" id="field_hashtagek" multiple name="hashtagek" [(ngModel)]="recept.hashtageks">
+                        <option [ngValue]="getSelected(recept.hashtageks, hashTagOption)" *ngFor="let hashTagOption of hashtags; trackBy: trackHashTagById">{{hashTagOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+{
+    "bubichefApp": {
+        "osszetevo": {
+            "home": {
+                "title": "Osszetevos",
+                "createLabel": "Egy új Osszetevo létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Osszetevot"
+            },
+            "created": "Egy új Osszetevo lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Osszetevo módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Osszetevo törölve lett {{ param }} azonosítóval",
+            "delete": {
+                "question": "Biztos benne, hogy törölni szeretné az Osszetevot {{ id }} azonosítóval?"
+            },
+            "detail": {
+                "title": "Osszetevo"
+            },
+            "nev": "Nev",
+            "leiras": "Leiras",
+            "kep": "Kep",
+            "receptek": "Receptek"
+        }
+    }
+}

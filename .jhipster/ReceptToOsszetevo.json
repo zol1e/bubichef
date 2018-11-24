@@ -1,0 +1,40 @@
+{
+    "name": "ReceptToOsszetevo",
+    "fields": [
+        {
+            "fieldName": "mennyiseg",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 50
+        },
+        {
+            "fieldName": "megjegyzes",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "recept",
+            "otherEntityName": "recept",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "osszetevo",
+            "otherEntityName": "osszetevo",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181124203731",
+    "entityTableName": "recept_to_osszetevo",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

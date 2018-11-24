@@ -1,0 +1,22 @@
+{
+    "bubichefApp": {
+        "hashTag": {
+            "home": {
+                "title": "HashTags",
+                "createLabel": "Egy új Hash Tag létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Hash Tagt"
+            },
+            "created": "Egy új Hash Tag lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Hash Tag módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Hash Tag törölve lett {{ param }} azonosítóval",
+            "delete": {
+                "question": "Biztos benne, hogy törölni szeretné az Hash Tagt {{ id }} azonosítóval?"
+            },
+            "detail": {
+                "title": "Hash Tag"
+            },
+            "nev": "Nev",
+            "receptek": "Receptek"
+        }
+    }
+}

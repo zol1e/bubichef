@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="recept">
+            <h2><span jhiTranslate="bubichefApp.recept.detail.title">Recept</span> {{recept.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bubichefApp.recept.nev">Nev</span></dt>
+                <dd>
+                    <span>{{recept.nev}}</span>
+                </dd>
+                <dt><span jhiTranslate="bubichefApp.recept.leiras">Leiras</span></dt>
+                <dd>
+                    <span>{{recept.leiras}}</span>
+                </dd>
+                <dt><span jhiTranslate="bubichefApp.recept.kep">Kep</span></dt>
+                <dd>
+                    <div *ngIf="recept.kep">
+                        <a (click)="openFile(recept.kepContentType, recept.kep)">
+                            <img [src]="'data:' + recept.kepContentType + ';base64,' + recept.kep" style="max-width: 100%;" alt="recept image"/>
+                        </a>
+                        {{recept.kepContentType}}, {{byteSize(recept.kep)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bubichefApp.recept.feltoltve">Feltoltve</span></dt>
+                <dd>
+                    <span>{{recept.feltoltve}}</span>
+                </dd>
+                <dt><span jhiTranslate="bubichefApp.recept.kategoria">Kategoria</span></dt>
+                <dd>
+                    <div *ngIf="recept.kategoriaId">
+                        <a [routerLink]="['/kategoria', recept.kategoriaId, 'view']">{{recept.kategoriaId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bubichefApp.recept.hashtagek">Hashtagek</span></dt>
+                <dd>
+                    <span *ngFor="let hashtagek of recept.hashtageks; let last = last">
+                        <a [routerLink]="['/hash-tag', hashtagek?.id, 'view' ]">{{hashtagek.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/recept', recept.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
