@@ -85,8 +85,17 @@ public class ReceptServiceImpl implements ReceptService {
     @Transactional(readOnly = true)
     public Optional<ReceptDTO> findOne(Long id) {
         log.debug("Request to get Recept : {}", id);
-        return receptRepository.findOneWithEagerRelationships(id)
-            .map(receptMapper::toDto);
+        
+        Optional<ReceptDTO> teszt = receptRepository.findById(id)
+        .map(receptMapper::toDto);
+        
+        System.out.println();
+        
+        return receptRepository.findById(id)
+        .map(receptMapper::toDto);
+         
+        //return receptRepository.findOneWithEagerRelationships(id)
+        //    .map(receptMapper::toDto);
     }
 
     /**

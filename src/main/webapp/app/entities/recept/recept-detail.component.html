@@ -9,6 +9,14 @@
                 <dd>
                     <span>{{recept.nev}}</span>
                 </dd>
+                
+                <dt>Osszetevok</dt>
+                <dd>
+                    <span *ngFor="let osszetevok of recept.osszetevoks; let last = last">
+                        <a [routerLink]="['/recept-to-osszetevo', osszetevok?.id, 'view' ]">{{osszetevok.nev}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                
                 <dt><span jhiTranslate="bubichefApp.recept.leiras">Leiras</span></dt>
                 <dd>
                     <span>{{recept.leiras}}</span>
@@ -35,7 +43,7 @@
                 <dt><span jhiTranslate="bubichefApp.recept.hashtagek">Hashtagek</span></dt>
                 <dd>
                     <span *ngFor="let hashtagek of recept.hashtageks; let last = last">
-                        <a [routerLink]="['/hash-tag', hashtagek?.id, 'view' ]">{{hashtagek.id}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/hash-tag', hashtagek?.id, 'view' ]">{{hashtagek.nev}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
             </dl>

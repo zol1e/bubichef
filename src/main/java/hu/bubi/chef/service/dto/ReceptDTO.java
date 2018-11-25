@@ -2,6 +2,9 @@ package hu.bubi.chef.service.dto;
 
 import java.time.LocalDate;
 import javax.validation.constraints.*;
+
+import hu.bubi.chef.domain.ReceptToOsszetevo;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,8 +32,10 @@ public class ReceptDTO implements Serializable {
     private Long kategoriaId;
 
     private Set<HashTagDTO> hashtageks = new HashSet<>();
+    
+    private Set<ReceptToOsszetevo> osszetevoks = new HashSet<>();
 
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 
@@ -94,6 +99,14 @@ public class ReceptDTO implements Serializable {
         this.hashtageks = hashTags;
     }
 
+    public Set<ReceptToOsszetevo> getOsszetevoks() {
+		return osszetevoks;
+	}
+
+	public void setOsszetevoks(Set<ReceptToOsszetevo> osszetevoks) {
+		this.osszetevoks = osszetevoks;
+	}
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) {

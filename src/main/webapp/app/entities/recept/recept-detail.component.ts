@@ -16,6 +16,7 @@ export class ReceptDetailComponent implements OnInit {
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ recept }) => {
             this.recept = recept;
+            console.log(this.recept);
         });
     }
 
