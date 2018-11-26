@@ -86,13 +86,11 @@ public class ReceptServiceImpl implements ReceptService {
     public Optional<ReceptDTO> findOne(Long id) {
         log.debug("Request to get Recept : {}", id);
         
-        Optional<ReceptDTO> teszt = receptRepository.findById(id)
-        .map(receptMapper::toDto);
+        Optional<Recept> findById = receptRepository.findById(id);
+        Optional<ReceptDTO> map = findById.map(receptMapper::toDto);
+        map.get().setKategoriaNev(findById.get().getKategoria().getNev());
         
-        System.out.println();
-        
-        return receptRepository.findById(id)
-        .map(receptMapper::toDto);
+        return map;
          
         //return receptRepository.findOneWithEagerRelationships(id)
         //    .map(receptMapper::toDto);

@@ -10,6 +10,7 @@ export interface IRecept {
     kep?: any;
     feltoltve?: Moment;
     kategoriaId?: number;
+    kategoriaNev?: string;
     hashtageks?: IHashTag[];
     osszetevoks?: IReceptToOsszetevo[];
 }
@@ -23,6 +24,7 @@ export class Recept implements IRecept {
         public kep?: any,
         public feltoltve?: Moment,
         public kategoriaId?: number,
+        public kategoriaNev?: string,
         public hashtageks?: IHashTag[],
         public osszetevoks?: IReceptToOsszetevo[]
     ) {}

@@ -31,7 +31,9 @@ public class ReceptDTO implements Serializable {
 
     private Long kategoriaId;
 
-    private Set<HashTagDTO> hashtageks = new HashSet<>();
+    private String kategoriaNev;
+
+	private Set<HashTagDTO> hashtageks = new HashSet<>();
     
     private Set<ReceptToOsszetevo> osszetevoks = new HashSet<>();
 
@@ -91,6 +93,14 @@ public class ReceptDTO implements Serializable {
         this.kategoriaId = kategoriaId;
     }
 
+    public String getKategoriaNev() {
+		return kategoriaNev;
+	}
+
+	public void setKategoriaNev(String kategoriaNev) {
+		this.kategoriaNev = kategoriaNev;
+	}
+    
     public Set<HashTagDTO> getHashtageks() {
         return hashtageks;
     }

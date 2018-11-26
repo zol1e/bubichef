@@ -1,27 +1,48 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="recept">
-            <h2><span jhiTranslate="bubichefApp.recept.detail.title">Recept</span> {{recept.id}}</h2>
+            <h2>{{recept.nev}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="bubichefApp.recept.nev">Nev</span></dt>
+                
+                <dt><span jhiTranslate="bubichefApp.recept.kategoria">Kategória</span></dt>
                 <dd>
-                    <span>{{recept.nev}}</span>
+                    <div *ngIf="recept.kategoriaId">
+                        <a [routerLink]="['/kategoria', recept.kategoriaId, 'view']">{{recept.kategoriaNev}}</a>
+                    </div>
                 </dd>
                 
-                <dt>Osszetevok</dt>
+                <dt>Összetevők</dt>
                 <dd>
-                    <span *ngFor="let osszetevok of recept.osszetevoks; let last = last">
-                        <a [routerLink]="['/recept-to-osszetevo', osszetevok?.id, 'view' ]">{{osszetevok.nev}}</a>{{last ? '' : ', '}}
-                    </span>
+                	<ul>
+	                    <span *ngFor="let osszetevok of recept.osszetevoks; let last = last">
+	                    	<li>
+		                        <a [routerLink]="['/osszetevo', osszetevok.osszetevo?.id, 'view' ]">
+		                        
+		                        {{osszetevok.osszetevo.nev}}
+		                        {{osszetevok.mennyiseg}}
+		                        {{osszetevok.megjegyzes}}
+		                        
+		                        </a>
+	                        </li>
+	                    </span>
+                    </ul>
                 </dd>
                 
-                <dt><span jhiTranslate="bubichefApp.recept.leiras">Leiras</span></dt>
+                <dt><span jhiTranslate="bubichefApp.recept.leiras">Leírás</span></dt>
                 <dd>
                     <span>{{recept.leiras}}</span>
                 </dd>
-                <dt><span jhiTranslate="bubichefApp.recept.kep">Kep</span></dt>
+                
+                <!-- <dt><span jhiTranslate="bubichefApp.recept.hashtagek">Hashtagek</span></dt>  -->
+                <dd>
+                    <span *ngFor="let hashtagek of recept.hashtageks; let last = last">
+                        <a [routerLink]="['/hash-tag', hashtagek?.id, 'view' ]">#{{hashtagek.nev}}</a>
+                    </span>
+                </dd>
+                
+                <!-- <dt><span jhiTranslate="bubichefApp.recept.kep">Kep</span></dt>
                 <dd>
                     <div *ngIf="recept.kep">
                         <a (click)="openFile(recept.kepContentType, recept.kep)">
@@ -30,22 +51,11 @@
                         {{recept.kepContentType}}, {{byteSize(recept.kep)}}
                     </div>
                 </dd>
+                
                 <dt><span jhiTranslate="bubichefApp.recept.feltoltve">Feltoltve</span></dt>
                 <dd>
                     <span>{{recept.feltoltve}}</span>
-                </dd>
-                <dt><span jhiTranslate="bubichefApp.recept.kategoria">Kategoria</span></dt>
-                <dd>
-                    <div *ngIf="recept.kategoriaId">
-                        <a [routerLink]="['/kategoria', recept.kategoriaId, 'view']">{{recept.kategoriaId}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="bubichefApp.recept.hashtagek">Hashtagek</span></dt>
-                <dd>
-                    <span *ngFor="let hashtagek of recept.hashtageks; let last = last">
-                        <a [routerLink]="['/hash-tag', hashtagek?.id, 'view' ]">{{hashtagek.nev}}</a>{{last ? '' : ', '}}
-                    </span>
-                </dd>
+                </dd>  -->
             </dl>
 
             <button type="submit"
