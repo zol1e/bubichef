@@ -103,7 +103,7 @@ export class ReceptUpdateComponent implements OnInit {
       let recept2osszetevo = new ReceptToOsszetevo(null, "", "", this.recept.id, null);
 
       let osszetevo = new Osszetevo(null, null, null, null, null, null);
-      recept2osszetevo.osszetevo = osszetevo;
+      recept2osszetevo.osszetevoId = osszetevo.id;
 
       this.recept.osszetevoks.push(recept2osszetevo);
     }
@@ -116,7 +116,7 @@ export class ReceptUpdateComponent implements OnInit {
         this.isSaving = true;
 
         for (var i = this.recept.osszetevoks.length -1; i >= 0; i--) {
-          if (this.recept.osszetevoks[i].osszetevo.id == null) {
+          if (this.recept.osszetevoks[i].osszetevoId == null) {
               this.recept.osszetevoks.splice(i, 1);
           }
         }
@@ -187,6 +187,6 @@ export class ReceptUpdateComponent implements OnInit {
     }
 
     selectOsszetevo(id: number, newId: number) {
-      this.recept.osszetevoks[id].osszetevo.id = newId;
+      this.recept.osszetevoks[id].osszetevoId = newId;
     }
 }
