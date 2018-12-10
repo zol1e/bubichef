@@ -1,18 +1,22 @@
 package hu.bubi.chef.service.impl;
 
 import hu.bubi.chef.service.ReceptService;
+import hu.bubi.chef.service.ReceptToOsszetevoService;
 import hu.bubi.chef.domain.Recept;
+import hu.bubi.chef.domain.ReceptToOsszetevo;
 import hu.bubi.chef.repository.ReceptRepository;
 import hu.bubi.chef.service.dto.ReceptDTO;
+import hu.bubi.chef.service.dto.ReceptToOsszetevoDTO;
 import hu.bubi.chef.service.mapper.ReceptMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +35,9 @@ public class ReceptServiceImpl implements ReceptService {
 
     private final ReceptMapper receptMapper;
 
+    @Autowired
+    private ReceptToOsszetevoService receptToOsszetevoService;
+    
     public ReceptServiceImpl(ReceptRepository receptRepository, ReceptMapper receptMapper) {
         this.receptRepository = receptRepository;
         this.receptMapper = receptMapper;
@@ -45,9 +52,53 @@ public class ReceptServiceImpl implements ReceptService {
     @Override
     public ReceptDTO save(ReceptDTO receptDTO) {
         log.debug("Request to save Recept : {}", receptDTO);
-
+        
+        List<Long> mappingsToDelete = new ArrayList<Long>();
+	        if(receptDTO.getId() != null) {
+	        Optional<Recept> old = receptRepository.findById(receptDTO.getId());
+	        if(old.isPresent()) {
+	        	for(ReceptToOsszetevo mapping : old.get().getOsszetevoks()) {
+	        		mappingsToDelete.add(mapping.getId());
+	        	}
+	        }
+        }
+        
         Recept recept = receptMapper.toEntity(receptDTO);
         recept = receptRepository.save(recept);
+
+        for(ReceptToOsszetevo r2o  :receptDTO.getOsszetevoks()) {
+        	Optional<ReceptToOsszetevoDTO> existing = null;
+        	ReceptToOsszetevoDTO receptToOsszetevoDTO = null;
+        	
+        	if(r2o.getId() != null) {
+        		existing = receptToOsszetevoService.findOne(r2o.getId());
+        		
+        		if(existing.isPresent()) {
+        			receptToOsszetevoDTO = existing.get();
+        		}
+        	}
+        	
+        	if(receptToOsszetevoDTO == null) {
+        		receptToOsszetevoDTO = new ReceptToOsszetevoDTO();
+        	}
+        	
+        	receptToOsszetevoDTO.setMegjegyzes(r2o.getMegjegyzes());
+        	
+        	if(r2o.getOsszetevo() != null && r2o.getOsszetevo().getId() != null) {
+        		receptToOsszetevoDTO.setOsszetevoId(r2o.getOsszetevo().getId());
+        	}
+        	receptToOsszetevoDTO.setReceptId(recept.getId());
+        	receptToOsszetevoDTO.setMennyiseg(r2o.getMennyiseg());
+
+        	receptToOsszetevoService.save(receptToOsszetevoDTO);
+        	
+        	mappingsToDelete.remove(receptToOsszetevoDTO.getId());
+        }
+        
+        for(Long id : mappingsToDelete) {
+        	receptToOsszetevoService.delete(id);
+        }
+        
         return receptMapper.toDto(recept);
     }
 
@@ -88,7 +139,10 @@ public class ReceptServiceImpl implements ReceptService {
         
         Optional<Recept> findById = receptRepository.findById(id);
         Optional<ReceptDTO> map = findById.map(receptMapper::toDto);
-        map.get().setKategoriaNev(findById.get().getKategoria().getNev());
+        
+        if(map.get() != null && findById.get() != null && findById.get().getKategoria() != null) {
+        	map.get().setKategoriaNev(findById.get().getKategoria().getNev());
+        }
         
         return map;
          

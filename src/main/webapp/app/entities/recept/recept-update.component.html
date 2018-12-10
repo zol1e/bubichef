@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-            <h2 id="jhi-recept-heading" jhiTranslate="bubichefApp.recept.home.createOrEditLabel">Create or edit a Recept</h2>
+            <h2 id="jhi-recept-heading" >Recept felvitele</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!recept.id">
@@ -14,6 +14,51 @@
                     <input type="text" class="form-control" name="nev" id="field_nev"
                         [(ngModel)]="recept.nev" />
                 </div>
+
+               <div class="form-group">
+                    <label class="form-control-label" for="field_osszetevoks">Összetevők</label>
+                    <!--<select class="form-control" id="field_osszetevoks" multiple name="osszetevoks" [(ngModel)]="recept.osszetevoks" >
+                        <option [ngValue]="osszetevoOption.id" *ngFor="let osszetevoOption of osszetevoks; trackBy: trackOsszetevokById">
+	                          {{getOsszetevo(osszetevoOption.osszetevoId)}} - {{osszetevoOption.mennyiseg}}
+		                </option>
+                  </select>
+
+                      <select [(ngModel)]="recept.osszetevoks[i].osszetevoId" [ngModelOptions]="{standalone: true}">
+                      <option [ngValue]="osszetevo.id" *ngFor="let osszetevo of allOsszetevo;">
+
+
+
+                      <select (change)="selectOsszetevo(i, $event.target.value);">
+
+                          <option *ngFor="let osszetevo of allOsszetevo;" [value]="osszetevo.id">
+
+                            {{osszetevo.id}} - {{osszetevo.nev}}
+
+                          </option>
+
+                      </select>
+                  -->
+                    <div *ngFor="let osszetevoOption of recept.osszetevoks; let i = index;">
+
+                      <select [(ngModel)]="recept.osszetevoks[i].osszetevo.id" [ngModelOptions]="{standalone: true}">
+
+                        <option *ngIf="recept.osszetevoks[i].osszetevo.id == null" [ngValue]="null">Válassz</option>
+
+                        <option *ngFor="let osszetevo of allOsszetevo;" [ngValue]="osszetevo.id">
+                          {{osszetevo.nev}}
+                        </option>
+
+                      </select>
+
+                      Mennyiség: <input type="text" value={{osszetevoOption.mennyiseg}} [(ngModel)]="recept.osszetevoks[i].mennyiseg" [ngModelOptions]="{standalone: true}" />
+                      Megjegyzés: <input type="text" value={{osszetevoOption.megjegyzes}} [(ngModel)]="recept.osszetevoks[i].megjegyzes" [ngModelOptions]="{standalone: true}" />
+                      <input type="button" value="Törlés" (click)="removeOsszetevo(i)"/>
+                    </div>
+
+                  </br>
+                  <input type="button" value="Új összetevő" (click)="addOsszetevo()"/>
+                </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="bubichefApp.recept.leiras" for="field_leiras">Leiras</label>
                     <input type="text" class="form-control" name="leiras" id="field_leiras"
@@ -55,15 +100,15 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="bubichefApp.recept.kategoria" for="field_kategoria">Kategoria</label>
-                    <select class="form-control" id="field_kategoria" name="kategoria" [(ngModel)]="recept.kategoriaId" >
+                    <select class="form-control" id="field_kategoria" name="kategoria" [(ngModel)]="recept.kategoriaNev" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="kategoriaOption.id" *ngFor="let kategoriaOption of kategorias; trackBy: trackKategoriaById">{{kategoriaOption.id}}</option>
+                        <option [ngValue]="kategoriaOption.id" *ngFor="let kategoriaOption of kategorias; trackBy: trackKategoriaById">{{kategoriaOption.nev}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label jhiTranslate="bubichefApp.recept.hashtagek" for="field_hashtagek">Hashtagek</label>
                     <select class="form-control" id="field_hashtagek" multiple name="hashtagek" [(ngModel)]="recept.hashtageks">
-                        <option [ngValue]="getSelected(recept.hashtageks, hashTagOption)" *ngFor="let hashTagOption of hashtags; trackBy: trackHashTagById">{{hashTagOption.id}}</option>
+                        <option [ngValue]="getSelected(recept.hashtageks, hashTagOption)" *ngFor="let hashTagOption of hashtags; trackBy: trackHashTagById">{{hashTagOption.nev}}</option>
                     </select>
                 </div>
             </div>

@@ -11,6 +11,10 @@ import { IKategoria } from 'app/shared/model/kategoria.model';
 import { KategoriaService } from 'app/entities/kategoria';
 import { IHashTag } from 'app/shared/model/hash-tag.model';
 import { HashTagService } from 'app/entities/hash-tag';
+import { OsszetevoService } from "app/entities/osszetevo";
+import { ReceptToOsszetevoService } from "app/entities/recept-to-osszetevo";
+import { IReceptToOsszetevo, ReceptToOsszetevo } from "app/shared/model/recept-to-osszetevo.model";
+import { IOsszetevo, Osszetevo } from "app/shared/model/osszetevo.model";
 
 @Component({
     selector: 'jhi-recept-update',
@@ -23,6 +27,11 @@ export class ReceptUpdateComponent implements OnInit {
     kategorias: IKategoria[];
 
     hashtags: IHashTag[];
+
+    osszetevoks: IReceptToOsszetevo[];
+
+    allOsszetevo: IOsszetevo[];
+
     feltoltveDp: any;
 
     constructor(
@@ -31,6 +40,8 @@ export class ReceptUpdateComponent implements OnInit {
         private receptService: ReceptService,
         private kategoriaService: KategoriaService,
         private hashTagService: HashTagService,
+        private osszetevoMappingService: ReceptToOsszetevoService,
+        private allOsszetevoService: OsszetevoService,
         private elementRef: ElementRef,
         private activatedRoute: ActivatedRoute
     ) {}
@@ -51,6 +62,20 @@ export class ReceptUpdateComponent implements OnInit {
                 this.hashtags = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.osszetevoMappingService.query().subscribe(
+                (res: HttpResponse<IReceptToOsszetevo[]>) => {
+                    this.osszetevoks = res.body;
+                    console.log(this.osszetevoks);
+                },
+                (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.allOsszetevoService.query().subscribe(
+                (res: HttpResponse<IOsszetevo[]>) => {
+                    this.allOsszetevo = res.body;
+                    console.log(this.allOsszetevo);
+                },
+                (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
 
@@ -74,8 +99,28 @@ export class ReceptUpdateComponent implements OnInit {
         window.history.back();
     }
 
+    addOsszetevo() {
+      let recept2osszetevo = new ReceptToOsszetevo(null, "", "", this.recept.id, null);
+
+      let osszetevo = new Osszetevo(null, null, null, null, null, null);
+      recept2osszetevo.osszetevo = osszetevo;
+
+      this.recept.osszetevoks.push(recept2osszetevo);
+    }
+
+    removeOsszetevo(i: number) {
+      this.recept.osszetevoks.splice(i, 1);
+    }
+
     save() {
         this.isSaving = true;
+
+        for (var i = this.recept.osszetevoks.length -1; i >= 0; i--) {
+          if (this.recept.osszetevoks[i].osszetevo.id == null) {
+              this.recept.osszetevoks.splice(i, 1);
+          }
+        }
+
         if (this.recept.id !== undefined) {
             this.subscribeToSaveResponse(this.receptService.update(this.recept));
         } else {
@@ -108,6 +153,10 @@ export class ReceptUpdateComponent implements OnInit {
         return item.id;
     }
 
+    trackOsszetevokById(index: number, item: IOsszetevo) {
+        return item.id;
+    }
+
     getSelected(selectedVals: Array<any>, option: any) {
         if (selectedVals) {
             for (let i = 0; i < selectedVals.length; i++) {
@@ -117,5 +166,27 @@ export class ReceptUpdateComponent implements OnInit {
             }
         }
         return option;
+    }
+
+    /*getOsszetevo(id: number) {
+        for (let i = 0; i < this.allOsszetevo.length; i++) {
+            if (id === this.allOsszetevo[i].id) {
+                return this.allOsszetevo[i].nev;
+            }
+        }
+        return "";
+    }*/
+
+    getOsszetevo(id: number) {
+        for (let i = 0; i < this.recept.osszetevoks.length; i++) {
+            if (id === this.recept.osszetevoks[i].id) {
+                return this.recept.osszetevoks[i];
+            }
+        }
+        return null;
+    }
+
+    selectOsszetevo(id: number, newId: number) {
+      this.recept.osszetevoks[id].osszetevo.id = newId;
     }
 }
