@@ -1,9 +1,12 @@
+import { IOsszetevo, Osszetevo } from "app/shared/model/osszetevo.model";
+
 export interface IReceptToOsszetevo {
     id?: number;
     mennyiseg?: string;
     megjegyzes?: string;
     receptId?: number;
     osszetevoId?: number;
+    osszetevo?: Osszetevo
 }
 
 export class ReceptToOsszetevo implements IReceptToOsszetevo {
@@ -12,6 +15,7 @@ export class ReceptToOsszetevo implements IReceptToOsszetevo {
         public mennyiseg?: string,
         public megjegyzes?: string,
         public receptId?: number,
-        public osszetevoId?: number
+        public osszetevoId?: number,
+        public osszetevo?: Osszetevo
     ) {}
 }

@@ -28,8 +28,6 @@ export class ReceptUpdateComponent implements OnInit {
 
     hashtags: IHashTag[];
 
-    osszetevoks: IReceptToOsszetevo[];
-
     allOsszetevo: IOsszetevo[];
 
     feltoltveDp: any;
@@ -63,13 +61,6 @@ export class ReceptUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.osszetevoMappingService.query().subscribe(
-                (res: HttpResponse<IReceptToOsszetevo[]>) => {
-                    this.osszetevoks = res.body;
-                    console.log(this.osszetevoks);
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-        );
         this.allOsszetevoService.query().subscribe(
                 (res: HttpResponse<IOsszetevo[]>) => {
                     this.allOsszetevo = res.body;
@@ -100,10 +91,12 @@ export class ReceptUpdateComponent implements OnInit {
     }
 
     addOsszetevo() {
-      let recept2osszetevo = new ReceptToOsszetevo(null, "", "", this.recept.id, null);
+      if(this.recept.osszetevoks == null || this.recept.osszetevoks == undefined) {
+          this.recept.osszetevoks = new Array<IReceptToOsszetevo>();
+      }
 
-      let osszetevo = new Osszetevo(null, null, null, null, null, null);
-      recept2osszetevo.osszetevoId = osszetevo.id;
+      let recept2osszetevo = new ReceptToOsszetevo(null, "", "", this.recept.id, null, null);
+      recept2osszetevo.osszetevo = new Osszetevo(null, null, null, null, null, null);
 
       this.recept.osszetevoks.push(recept2osszetevo);
     }
@@ -115,10 +108,12 @@ export class ReceptUpdateComponent implements OnInit {
     save() {
         this.isSaving = true;
 
-        for (var i = this.recept.osszetevoks.length -1; i >= 0; i--) {
-          if (this.recept.osszetevoks[i].osszetevoId == null) {
-              this.recept.osszetevoks.splice(i, 1);
-          }
+        if(this.recept.osszetevoks != null && this.recept.osszetevoks != undefined) {
+            for (let i = this.recept.osszetevoks.length -1; i >= 0; i--) {
+              if (this.recept.osszetevoks[i].osszetevo.id == null) {
+                  this.recept.osszetevoks.splice(i, 1);
+              }
+            }
         }
 
         if (this.recept.id !== undefined) {
@@ -168,15 +163,6 @@ export class ReceptUpdateComponent implements OnInit {
         return option;
     }
 
-    /*getOsszetevo(id: number) {
-        for (let i = 0; i < this.allOsszetevo.length; i++) {
-            if (id === this.allOsszetevo[i].id) {
-                return this.allOsszetevo[i].nev;
-            }
-        }
-        return "";
-    }*/
-
     getOsszetevo(id: number) {
         for (let i = 0; i < this.recept.osszetevoks.length; i++) {
             if (id === this.recept.osszetevoks[i].id) {
@@ -184,9 +170,5 @@ export class ReceptUpdateComponent implements OnInit {
             }
         }
         return null;
-    }
-
-    selectOsszetevo(id: number, newId: number) {
-      this.recept.osszetevoks[id].osszetevoId = newId;
     }
 }

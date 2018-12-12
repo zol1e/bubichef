@@ -37,17 +37,47 @@
                           </option>
 
                       </select>
+
+                      <div *ngFor="let osszetevoOption of recept.osszetevoks; let i = index;">
+
+                        <select
+                        [(ngModel)]="recept.osszetevoks[i].osszetevo.id"
+                        (ngModelChange)="selectOsszetevo($event, i)"
+                        [ngModelOptions]="{standalone: true}">
+
+                          <option *ngIf="recept.osszetevoks[i].isTemp" [ngValue]="null">Válassz</option>
+                          <option *ngFor="let osszetevo of allOsszetevo;" [ngValue]="osszetevo.id">
+                            {{osszetevo.nev}}
+                          </option>
+                        </select>
+
+                        <select (change)="selectOsszetevo($event.target.value, i)">
+
+                          <option *ngIf="recept.osszetevoks[i].isTemp"
+                                  [value]="null" selected="recept.osszetevoks[i].isTemp">
+
+                            Válassz
+                          </option>
+
+                          <option *ngFor="let osszetevo of allOsszetevo;"
+                                  [value]="osszetevo.id"
+                                  selected="recept.osszetevoks[i].osszetevo.id == osszetevo.id ||
+                                            recept.osszetevoks[i].osszetevoId == osszetevo.id ">
+
+                            {{osszetevo.nev}}
+                          </option>
+                        </select>
                   -->
                     <div *ngFor="let osszetevoOption of recept.osszetevoks; let i = index;">
 
-                      <select [(ngModel)]="recept.osszetevoks[i].osszetevo.id" [ngModelOptions]="{standalone: true}">
+                      <select
+                      [(ngModel)]="recept.osszetevoks[i].osszetevo.id"
+                      [ngModelOptions]="{standalone: true}">
 
                         <option *ngIf="recept.osszetevoks[i].osszetevo.id == null" [ngValue]="null">Válassz</option>
-
                         <option *ngFor="let osszetevo of allOsszetevo;" [ngValue]="osszetevo.id">
                           {{osszetevo.nev}}
                         </option>
-
                       </select>
 
                       Mennyiség: <input type="text" value={{osszetevoOption.mennyiseg}} [(ngModel)]="recept.osszetevoks[i].mennyiseg" [ngModelOptions]="{standalone: true}" />
