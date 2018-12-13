@@ -17,63 +17,10 @@
 
                <div class="form-group">
                     <label class="form-control-label" for="field_osszetevoks">Összetevők</label>
-                    <!--<select class="form-control" id="field_osszetevoks" multiple name="osszetevoks" [(ngModel)]="recept.osszetevoks" >
-                        <option [ngValue]="osszetevoOption.id" *ngFor="let osszetevoOption of osszetevoks; trackBy: trackOsszetevokById">
-	                          {{getOsszetevo(osszetevoOption.osszetevoId)}} - {{osszetevoOption.mennyiseg}}
-		                </option>
-                  </select>
-
-                      <select [(ngModel)]="recept.osszetevoks[i].osszetevoId" [ngModelOptions]="{standalone: true}">
-                      <option [ngValue]="osszetevo.id" *ngFor="let osszetevo of allOsszetevo;">
-
-
-
-                      <select (change)="selectOsszetevo(i, $event.target.value);">
-
-                          <option *ngFor="let osszetevo of allOsszetevo;" [value]="osszetevo.id">
-
-                            {{osszetevo.id}} - {{osszetevo.nev}}
-
-                          </option>
-
-                      </select>
-
-                      <div *ngFor="let osszetevoOption of recept.osszetevoks; let i = index;">
-
-                        <select
-                        [(ngModel)]="recept.osszetevoks[i].osszetevo.id"
-                        (ngModelChange)="selectOsszetevo($event, i)"
-                        [ngModelOptions]="{standalone: true}">
-
-                          <option *ngIf="recept.osszetevoks[i].isTemp" [ngValue]="null">Válassz</option>
-                          <option *ngFor="let osszetevo of allOsszetevo;" [ngValue]="osszetevo.id">
-                            {{osszetevo.nev}}
-                          </option>
-                        </select>
-
-                        <select (change)="selectOsszetevo($event.target.value, i)">
-
-                          <option *ngIf="recept.osszetevoks[i].isTemp"
-                                  [value]="null" selected="recept.osszetevoks[i].isTemp">
-
-                            Válassz
-                          </option>
-
-                          <option *ngFor="let osszetevo of allOsszetevo;"
-                                  [value]="osszetevo.id"
-                                  selected="recept.osszetevoks[i].osszetevo.id == osszetevo.id ||
-                                            recept.osszetevoks[i].osszetevoId == osszetevo.id ">
-
-                            {{osszetevo.nev}}
-                          </option>
-                        </select>
-                  -->
+                    
                     <div *ngFor="let osszetevoOption of recept.osszetevoks; let i = index;">
 
-                      <select
-                      [(ngModel)]="recept.osszetevoks[i].osszetevo.id"
-                      [ngModelOptions]="{standalone: true}">
-
+                      <select [(ngModel)]="recept.osszetevoks[i].osszetevo.id" [ngModelOptions]="{standalone: true}">
                         <option *ngIf="recept.osszetevoks[i].osszetevo.id == null" [ngValue]="null">Válassz</option>
                         <option *ngFor="let osszetevo of allOsszetevo;" [ngValue]="osszetevo.id">
                           {{osszetevo.nev}}
@@ -129,8 +76,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bubichefApp.recept.kategoria" for="field_kategoria">Kategoria</label>
-                    <select class="form-control" id="field_kategoria" name="kategoria" [(ngModel)]="recept.kategoriaNev" >
+                    <label class="form-control-label" for="field_kategoria">Kategoria</label>
+                    <select class="form-control" id="field_kategoria" name="kategoria" [(ngModel)]="recept.kategoriaId" >
                         <option [ngValue]="null"></option>
                         <option [ngValue]="kategoriaOption.id" *ngFor="let kategoriaOption of kategorias; trackBy: trackKategoriaById">{{kategoriaOption.nev}}</option>
                     </select>
