@@ -8,8 +8,8 @@
 
     <div *ngSwitchCase="false">
     	<span>
-	    	<input type="text" [(ngModel)]="password" />
-	    	<input type="button" value="Mehet!" (click)="login()"/>
+	    	<input style="width:100%;height:10vh;margin-top:1%;" id="passwordInput" type="text" [(ngModel)]="password" autofocus />
+	    	<input style="border:none;width:100%;height:20vh;background-color:PaleGreen;" id="mehetBtn" type="button" value="Mehet!" (click)="login()"/>
     	</span>
     </div>
 </div>

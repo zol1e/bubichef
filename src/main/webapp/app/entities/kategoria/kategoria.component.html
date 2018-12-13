@@ -1,10 +1,10 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="bubichefApp.kategoria.home.title">Kategorias</span>
+        <span>Kategóriák</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-kategoria" [routerLink]="['/kategoria/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="bubichefApp.kategoria.home.createLabel">
-            Create new Kategoria
+            Kategória felvitele
             </span>
         </button>
     </h2>
@@ -14,23 +14,15 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="bubichefApp.kategoria.nev">Nev</span></th>
+            <th><span jhiTranslate="bubichefApp.kategoria.nev">Név</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let kategoria of kategorias ;trackBy: trackId">
-                <td><a [routerLink]="['/kategoria', kategoria.id, 'view' ]">{{kategoria.id}}</a></td>
-                <td>{{kategoria.nev}}</td>
+            <tr *ngFor="let kategoria of kategorias | orderBy : 'nev';trackBy: trackId">
+                <td [routerLink]="['/kategoria', kategoria.id, 'view' ]">{{kategoria.nev}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['/kategoria', kategoria.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
                         <button type="submit"
                                 [routerLink]="['/kategoria', kategoria.id, 'edit']"
                                 class="btn btn-primary btn-sm">

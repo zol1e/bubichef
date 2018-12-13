@@ -1,11 +1,11 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="kategoria">
-            <h2><span jhiTranslate="bubichefApp.kategoria.detail.title">Kategoria</span> {{kategoria.id}}</h2>
+            <h2><span>Kategória - {{kategoria.nev}}</span></h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="bubichefApp.kategoria.nev">Nev</span></dt>
+                <dt><span>Név</span></dt>
                 <dd>
                     <span>{{kategoria.nev}}</span>
                 </dd>
@@ -23,5 +23,8 @@
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
+        
+        <jhi-recept></jhi-recept>
+        
     </div>
 </div>

@@ -64,7 +64,19 @@ export class ReceptUpdateComponent implements OnInit {
         this.allOsszetevoService.query().subscribe(
                 (res: HttpResponse<IOsszetevo[]>) => {
                     this.allOsszetevo = res.body;
-                    console.log(this.allOsszetevo);
+                    
+                    this.allOsszetevo = this.allOsszetevo.sort((n1,n2) => {
+                        if (n1.nev > n2.nev) {
+                            return 1;
+                        }
+
+                        if (n1.nev < n2.nev) {
+                            return -1;
+                        }
+
+                        return 0;
+                    });
+                    
                 },
                 (res: HttpErrorResponse) => this.onError(res.message)
         );

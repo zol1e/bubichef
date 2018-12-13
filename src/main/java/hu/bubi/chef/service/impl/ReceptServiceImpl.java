@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -158,6 +159,16 @@ public class ReceptServiceImpl implements ReceptService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Recept : {}", id);
+        
+        Optional<ReceptDTO> recept = this.findOne(id);
+        if(recept.isPresent()) {
+        	Set<ReceptToOsszetevo> osszetevoks = recept.get().getOsszetevoks();
+        	
+        	for(ReceptToOsszetevo osszetevo : osszetevoks) {
+        		receptToOsszetevoService.delete(osszetevo.getId());
+        	}
+        }
+        
         receptRepository.deleteById(id);
     }
 }
