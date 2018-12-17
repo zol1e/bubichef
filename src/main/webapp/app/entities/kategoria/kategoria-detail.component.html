@@ -22,9 +22,33 @@
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
-        </div>
-        
-        <jhi-recept></jhi-recept>
-        
+        </div>        
+    </div>
+   
+    <div class="table-responsive" *ngIf="recepts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>Név</span></th>
+            <th><span>Kategória</span></th>
+            <th><span>Hashtagek</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let recept of recepts  | orderBy : 'nev';  trackBy: trackId">
+                <td [routerLink]="['/recept', recept.id, 'view' ]">{{recept.nev}}</td>
+                <td>
+                    <div *ngIf="recept.kategoriaId">
+                        <a [routerLink]="['../kategoria', recept.kategoriaId , 'view' ]">{{recept.kategoriaNev}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let hashtagek of recept.hashtageks; let last = last">
+                    	<a class="form-control-static" [routerLink]="['../hash-tag', hashtagek?.id, 'view' ]"> #{{hashtagek.nev}}</a>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
