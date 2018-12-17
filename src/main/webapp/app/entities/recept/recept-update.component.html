@@ -12,7 +12,7 @@
 
                <div class="form-group">
                     <label class="form-control-label" for="field_osszetevoks">Összetevők</label>
-                    
+
                     <div *ngFor="let osszetevoOption of recept.osszetevoks; let i = index;">
 
                       <select [(ngModel)]="recept.osszetevoks[i].osszetevo.id" [ngModelOptions]="{standalone: true}">
@@ -33,8 +33,8 @@
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_leiras">Leírás</label>
-                    <input type="text" class="form-control" name="leiras" id="field_leiras"
-                        [(ngModel)]="recept.leiras" maxlength="10000"/>
+                    <textarea class="form-control" name="leiras" id="field_leiras"
+                        [(ngModel)]="recept.leiras" maxlength="10000"></textarea>
                     <div [hidden]="!(editForm.controls.leiras?.dirty && editForm.controls.leiras?.invalid)">
                         <small class="form-text text-danger"
                         [hidden]="!editForm.controls.leiras?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 10000 }">

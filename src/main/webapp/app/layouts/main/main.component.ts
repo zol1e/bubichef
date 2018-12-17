@@ -15,7 +15,10 @@ export class JhiMainComponent implements OnInit {
         if (routeSnapshot.firstChild) {
             title = this.getPageTitle(routeSnapshot.firstChild) || title;
         }
-        return title;
+
+        // TODO: ez csak ilyen hack, hogy ne legyen összevissza
+        return "Bubichef";
+        //return ";
     }
 
     ngOnInit() {

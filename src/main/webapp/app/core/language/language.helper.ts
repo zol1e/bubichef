@@ -44,7 +44,8 @@ export class JhiLanguageHelper {
         }
 
         this.translateService.get(titleKey).subscribe(title => {
-            this.titleService.setTitle(title);
+            //this.titleService.setTitle(title);
+            this.titleService.setTitle("Bubichef");
         });
     }
 

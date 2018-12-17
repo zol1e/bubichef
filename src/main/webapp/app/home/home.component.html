@@ -1,15 +1,15 @@
 <div [ngSwitch]="isAuthenticated()">
 	<div *ngSwitchCase="true">
-    	<input style="border:none;background-color:azure;height:20vh;width:100%;" type="button" value="Recept" routerLink="recept" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" />   	
-    	<input style="border:none;background-color:lavender;height:20vh;width:100%;" type="button" value="Összetevők" routerLink="osszetevo" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" />
-		<input style="border:none;background-color:cornsilk;height:20vh;width:100%;" type="button" value="Kategória" routerLink="kategoria" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" />
-		<input style="border:none;background-color:coral;height:20vh;width:100%;" type="button" value="Hash-Tag" routerLink="hash-tag" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" />
+    	<input style="border:none;background-color:azure;height:20vh;width:100%;font-size:xx-large;" type="button" value="Recept" routerLink="recept" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" />
+    	<input style="border:none;background-color:lavender;height:20vh;width:100%;font-size:xx-large;" type="button" value="Hozzávaló" routerLink="osszetevo" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" />
+		<input style="border:none;background-color:cornsilk;height:20vh;width:100%;font-size:xx-large;" type="button" value="Kategória" routerLink="kategoria" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" />
+		<input style="border:none;background-color:coral;height:20vh;width:100%;font-size:xx-large;" type="button" value="Címkék" routerLink="hash-tag" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" />
     </div>
 
     <div *ngSwitchCase="false">
     	<span>
-	    	<input style="width:100%;height:10vh;margin-top:1%;" id="passwordInput" type="text" [(ngModel)]="password" autofocus />
-	    	<input style="border:none;width:100%;height:20vh;background-color:PaleGreen;" id="mehetBtn" type="button" value="Mehet!" (click)="login()"/>
+	    	<input style="width:100%;height:10vh;margin-top:1%;" id="passwordInput" type="password" [(ngModel)]="password" autofocus />
+	    	<input style="border:none;width:100%;height:20vh;background-color:PaleGreen;font-size:xx-large;" id="mehetBtn" type="button" value="Mehet!" (click)="login()"/>
     	</span>
     </div>
 </div>

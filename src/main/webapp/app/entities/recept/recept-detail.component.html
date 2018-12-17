@@ -5,43 +5,43 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                
-                <dt><span jhiTranslate="bubichefApp.recept.kategoria">Kategória</span></dt>
+
+                <dt><span>Kategória</span></dt>
                 <dd>
                     <div *ngIf="recept.kategoriaId">
                         <a [routerLink]="['/kategoria', recept.kategoriaId, 'view']">{{recept.kategoriaNev}}</a>
                     </div>
                 </dd>
-                
+
                 <dt>Összetevők</dt>
                 <dd>
                 	<ul>
 	                    <span *ngFor="let osszetevok of recept.osszetevoks; let last = last">
 	                    	<li>
 		                        <a [routerLink]="['/osszetevo', osszetevok.osszetevo?.id, 'view' ]">
-		                        
+
 		                        {{osszetevok.osszetevo.nev}}
 		                        {{osszetevok.mennyiseg}}
 		                        {{osszetevok.megjegyzes}}
-		                        
+
 		                        </a>
 	                        </li>
 	                    </span>
                     </ul>
                 </dd>
-                
-                <dt><span jhiTranslate="bubichefApp.recept.leiras">Leírás</span></dt>
+
+                <dt><span>Leírás</span></dt>
                 <dd>
                     <span>{{recept.leiras}}</span>
                 </dd>
-                
+
                 <!-- <dt><span jhiTranslate="bubichefApp.recept.hashtagek">Hashtagek</span></dt>  -->
                 <dd>
                     <span *ngFor="let hashtagek of recept.hashtageks; let last = last">
                         <a [routerLink]="['/hash-tag', hashtagek?.id, 'view' ]">#{{hashtagek.nev}}</a>
                     </span>
                 </dd>
-                
+
                 <!-- <dt><span jhiTranslate="bubichefApp.recept.kep">Kep</span></dt>
                 <dd>
                     <div *ngIf="recept.kep">
@@ -51,7 +51,7 @@
                         {{recept.kepContentType}}, {{byteSize(recept.kep)}}
                     </div>
                 </dd>
-                
+
                 <dt><span jhiTranslate="bubichefApp.recept.feltoltve">Feltoltve</span></dt>
                 <dd>
                     <span>{{recept.feltoltve}}</span>
