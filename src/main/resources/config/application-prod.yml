@@ -15,9 +15,9 @@
 
 logging:
     level:
-        ROOT: INFO
-        hu.bubi.chef: INFO
-        io.github.jhipster: INFO
+        ROOT: DEBUG
+        hu.bubi.chef: DEBUG
+        io.github.jhipster: DEBUG
 
 spring:
     devtools:
